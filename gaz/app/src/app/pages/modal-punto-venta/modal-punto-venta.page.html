@@ -1,0 +1,151 @@
+<ion-header class="ion-padding-horizontal">
+    <ion-toolbar>
+        <ion-title>Punto de venta</ion-title>
+        <ion-buttons slot="end">
+            <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides>
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-label color="fucsia" class="ion-text-center">Precios de Cliente </ion-label>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="ion-text-left">
+                        <ion-label color="fucsia">Referencia </ion-label>
+                    </ion-col>
+                    <ion-col class="ion-text-right">
+                        <ion-label color="fucsia">Valor neto de venta </ion-label>
+                    </ion-col>
+                </ion-row>
+                <ion-item lines="full" *ngFor="let p of precio">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <ion-label color="fucsia" class="small">
+                                    {{ p.reference }}
+                                </ion-label>
+                            </ion-col>
+                            <ion-col>
+                                <ion-label color="fucsia" class="ion-text-right small">
+                                    {{ p.price | currency:"$":"symbol"}}
+                                </ion-label>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ion-grid>
+        </ion-slide>
+        <ion-slide>
+            <ng-container lines="full" *ngIf="pos">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label color="fucsia">Cartera Cliente</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col class="ion-text-left" size="4">
+                            <ion-label color="fucsia" class="small">Identificación: </ion-label>
+                        </ion-col>
+                        <ion-col class="ion-text-left" size="8">
+                            <ion-label color="fucsia" class="small">{{ pos.code }} </ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col class="ion-text-left" size="4">
+                            <ion-label color="fucsia" class="small">Nombre:</ion-label>
+                        </ion-col>
+                        <ion-col class="ion-text-left" size="8">
+                            <ion-label color="fucsia" class="small">{{ pos.name }}</ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col class="ion-text-left" size="4">
+                            <ion-label color="fucsia" class="small">Establecimiento:</ion-label>
+                        </ion-col>
+                        <ion-col class="ion-text-left" size="8">
+                            <ion-label color="fucsia" class="small">{{ pos.establishment }} </ion-label>
+                        </ion-col>
+                    </ion-row>
+                    <ng-container lines="full" *ngFor="let p of posAccounts">
+                        <ion-row>
+                            <ion-col class="ion-text-left" size="3">
+                                <ion-label color="fucsia" class="small">{{ p.EDAD }} </ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-center" size="6">
+                                <ion-label color="fucsia" class="small">F: {{ toDate(p.FECHA) }} V:{{ toDate(p.FECHA_VENCE) }}</ion-label>
+                            </ion-col>
+                            <ion-col class="ion-text-right" size="3">
+                                <ion-label color="fucsia" class="small">{{ p.SALDOS_TOT_CARTERA | currency }}</ion-label>
+                            </ion-col>
+                        </ion-row>
+                    </ng-container>
+                </ion-grid>
+            </ng-container>
+        </ion-slide>
+
+        <ion-slide>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item lines="none" class="ion-text-center">
+                            <ion-title> Ingreso promedio por kilo </ion-title>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Periodo: </ion-label>
+                            <ion-select [(ngModel)]="year" interface="popover" placeholder="Seleccionar" (ngModelChange)="loadTotalKgZones()">
+                                <ion-select-option *ngFor="let y of yearList" value="{{y}}">{{y}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="totalKgChartData[0].data.length > 1">
+                    <ion-col>
+                        <ion-card class="ion-padding">
+                            <canvas baseChart width="100%" height="100%"
+                                    [datasets]="totalKgChartData"
+                                    [labels]="totalKgChartLabels"
+                                    [options]="totalKgChartOptions"
+                                    [legend]="totalKgChartLegend"
+                                    [chartType]="totalKgChartType"
+                                    [plugins]="totalKgChartPlugins">
+                            </canvas>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngIf="totalKgTable.length > 1">
+                    <ion-col>
+                        <section>
+                            <table>
+                                <tr>
+                                    <th>Mes</th>
+                                    <th>Pesos</th>
+                                    <th>Kilos</th>
+                                    <th>Promedio</th>
+                                </tr>
+                                <tr *ngFor="let t of totalKgTable">
+                                    <td>{{ t.month }}</td>
+                                    <td>{{ t.pesos | currency }}</td>
+                                    <td>{{ t.kilos | number }}</td>
+                                    <td>{{ t.precio | number }} <small>$/k</small></td>
+                                </tr>
+                            </table>
+                        </section>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer class="ion-padding ion-text-right">
+    <ion-button color="fucsia" (click)="closeModal()">
+        Cerrar
+    </ion-button>
+</ion-footer>

@@ -1,0 +1,274 @@
+<app-header title="Visita a Punto de Venta"></app-header>
+
+<ion-content>
+  <ion-slides [options]="slideOptions" #slider>
+    <ion-slide>
+      <section class="ion-container pos-visit animated fadeIn faster">
+        <div class="app-card pos-visit" *ngIf="pos">
+          <div class="app-card-title">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="12">
+                  {{ pos.name }}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+          <div class="app-card-subtitle">
+            {{ pos.tradename || ' - ' }}
+          </div>
+          <div class="app-card-body buttons">
+            <div class="app-card-item">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-button color="light" size="small" shape="round" expand="full" (click)="goToSlide(1, b.slide, false)" *ngFor="let b of buttonOptions">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size="1">
+                            <ion-icon color="fucsia" [name]="isChecked(b.slide)"></ion-icon>
+                          </ion-col>
+                          <ion-col size="11" class="ion-text-left ion-padding-start">
+                            <ion-text color="fucsia">{{ b.title }}</ion-text>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-button color="fucsia" size="small" shape="round" expand="full" [disabled]="finalize()">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col size="1">
+                            <ion-icon color="light" name="save"></ion-icon>
+                          </ion-col>
+                          <ion-col size="11" class="ion-text-left ion-padding-start">
+                            <ion-text class="ion-white">Finalizar visita</ion-text>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ion-slide>
+    <ion-slide>
+      <ng-container [ngSwitch]="slide">
+        <ng-container *ngSwitchCase="'needs'">
+          <section class="ion-container pos-visit animated fadeIn faster">
+            <div class="app-card pos-visit" *ngIf="pos">
+              <div class="app-card-title">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      {{ pos.name }}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+              <div class="app-card-subtitle">
+                Necesidades
+              </div>
+              <div class="app-card-body buttons">
+                <div class="app-card-item">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label position="floating">Necesidades del punto de venta
+                            <ion-text color="danger">*</ion-text>
+                          </ion-label>
+                          <ion-textarea name="observations" maxlength="250" rows="5" [(ngModel)]="visit.needs.observations" required></ion-textarea>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label class="ion-text-x-small">¿Generó algún compromiso con el cliente?</ion-label>
+                          <ion-toggle color="fucsia" [(ngModel)]="visit.needs.promise" slot="end"></ion-toggle>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label position="floating">Descripción del compromiso
+                            <ion-text color="danger" *ngIf="visit.needs.promise">*</ion-text>
+                          </ion-label>
+                          <ion-textarea name="observations" maxlength="250" rows="2" [(ngModel)]="visit.needs.commitment" [required]="visit.needs.promise" [disabled]="!visit.needs.promise"></ion-textarea>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngSwitchCase="'inventory'">
+          <section class="ion-container pos-visit animated fadeIn faster">
+            <div class="app-card pos-visit" *ngIf="pos">
+              <div class="app-card-title">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      {{ pos.name }}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+              <div class="app-card-subtitle">
+                Inventarios
+              </div>
+              <div class="app-card-body buttons">
+                <div class="app-card-item">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-grid *ngFor="let l of visit.inventory.list; let i = index">
+                          <ion-row class="list-item">
+                            <ion-col size="1" class="ion-text-right">
+                              <ion-text>{{i+1}}</ion-text>
+                            </ion-col>
+                            <ion-col size="5" class="ion-text-left">
+                              <ion-text>{{ l.product }}</ion-text>
+                            </ion-col>
+                            <ion-col size="3" class="ion-text-right">
+                              <ion-text>{{ l.quantity }}</ion-text>
+                            </ion-col>
+                            <ion-col size="3">
+                              <ion-input type="number"
+                                         inputmode="numeric"
+                                         class="input-item ion-text-right"
+                                         [(ngModel)]="visit.inventory.list[i].check"
+                                         required>
+                              </ion-input>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-button size="small" expand="full" color="fucsia" shape="round" (click)="showCamera()">
+                          <ion-icon color="light" name="camera" slot="start"></ion-icon>
+                          Capturar imagen
+                        </ion-button>
+                        <ion-img class="round" [src]="visit.inventory.image" *ngIf="visit.inventory.image"></ion-img>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label position="floating">Observaciones de los inventarios
+                            <ion-text color="danger">*</ion-text>
+                          </ion-label>
+                          <ion-textarea name="observations" maxlength="250" rows="6" [(ngModel)]="visit.inventory.observations" required></ion-textarea>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngSwitchCase="'commercial'">
+          <section class="ion-container pos-visit animated fadeIn faster">
+            <div class="app-card pos-visit" *ngIf="pos">
+              <div class="app-card-title">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      {{ pos.name }}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+              <div class="app-card-subtitle">
+                Comportamiento comercial
+              </div>
+              <div class="app-card-body buttons">
+                <div class="app-card-item">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label position="floating">Observaciones del comportamiento
+                            <ion-text color="danger">*</ion-text>
+                          </ion-label>
+                          <ion-textarea name="observations" maxlength="250" rows="6" [(ngModel)]="visit.commercial_behavior.observations" required></ion-textarea>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label class="ion-text-x-small">¿Ha cumplido con las metas establecidas?</ion-label>
+                          <ion-toggle color="fucsia" [(ngModel)]="visit.commercial_behavior.compliance" slot="end"></ion-toggle>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngSwitchCase="'observations'">
+          <section class="ion-container pos-visit animated fadeIn faster">
+            <div class="app-card pos-visit" *ngIf="pos">
+              <div class="app-card-title">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12">
+                      {{ pos.name }}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </div>
+              <div class="app-card-subtitle">
+                Observaciones
+              </div>
+              <div class="app-card-body buttons">
+                <div class="app-card-item">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12">
+                        <ion-item lines="full">
+                          <ion-label position="floating">Observaciones generales de la visita
+                            <ion-text color="danger">*</ion-text>
+                          </ion-label>
+                          <ion-textarea name="observations" maxlength="250" rows="8" [(ngModel)]="visit.observations" required></ion-textarea>
+                        </ion-item>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ng-container>
+      </ng-container>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+  <ion-fab class="animated fadeIn faster" vertical="bottom" horizontal="end" *ngIf="goBack">
+    <ion-fab-button color="fucsia" [routerLink]="'/pos-visit-list'" routerDirection="forward">
+      <ion-icon name="undo"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab class="animated fadeIn faster" vertical="bottom" horizontal="end" *ngIf="!goBack">
+    <ion-fab-button color="light" (click)="save(); goToSlide(0, '', true)">
+      <ion-icon name="undo" color="fucsia"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

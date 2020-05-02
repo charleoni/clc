@@ -1,0 +1,389 @@
+<app-header title="Prospectos"></app-header>
+<ion-content>
+  <form id="prospectForm" (ngSubmit)="addProspect(pForm)" #pForm="ngForm">
+    <ion-slides #slider>
+      <ion-slide>
+        <section class="ion-container pos-visit animated fadeIn faster">
+          <div class="app-card pos-visit">
+            <div class="app-card-title">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    Información básica
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="app-card-body">
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Nombres y apellidos
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="name"
+                                 type="text"
+                                 minlength="5"
+                                 maxlength="80"
+                                 #name="ngModel"
+                                 [(ngModel)]="prospect.name"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="name.invalid && (name.dirty || name.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="name.errors.required">
+                        Nombres y apellidos es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="name.errors.minlength">
+                        Nombres y apellidos debe tener mínimo 5 caracteres
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">Nombre del comercio</ion-label>
+                      <ion-input name="tradeName"
+                                 type="text"
+                                 maxlength="60"
+                                 [(ngModel)]="prospect.tradeName">
+                      </ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Dirección
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="address"
+                                 type="text"
+                                 minlength="5"
+                                 maxlength="100"
+                                 #address="ngModel"
+                                 [(ngModel)]="prospect.address"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="address.invalid && (address.dirty || address.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="address.errors.required">
+                        Dirección es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="address.errors.minlength">
+                        Dirección debe tener mínimo 5 caracteres
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Departamento
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-select name="departmentId"
+                                  interface="popover"
+                                  [(ngModel)]="prospect.departmentId"
+                                  (ionChange)="onDepartmentChange()"
+                                  #departmentId="ngModel"
+                                  required>
+                        <ion-select-option value="{{d.id}}" *ngFor="let d of departments">{{d.name}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <ng-container *ngIf="departmentId.invalid && (departmentId.dirty || departmentId.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="departmentId.errors.required">
+                        Departamento es requerido
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Municipio
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-select name="cityId"
+                                  interface="popover"
+                                  #cityId="ngModel"
+                                  [(ngModel)]="prospect.cityId"
+                                  required>
+                        <ion-select-option value="{{c.id}}" *ngFor="let c of cities">{{c.name}}</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+                    <ng-container *ngIf="cityId.invalid && (cityId.dirty || cityId.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="cityId.errors.required">
+                        Municipio es requerido
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Teléfono</ion-label>
+                      <ion-input name="phone"
+                                 type="tel"
+                                 maxlength="20"
+                                 pattern="^[a-zA-Z0-9 ]*$"
+                                 #phone="ngModel"
+                                 [(ngModel)]="prospect.phone">
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="phone.errors.pattern">
+                        Teléfono solo debe tener letras y números
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Celular
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="mobile"
+                                 type="tel"
+                                 minlength="10"
+                                 maxlength="10"
+                                 pattern="[3]{1}[0-9]{9}"
+                                 #mobile="ngModel"
+                                 [(ngModel)]="prospect.mobile"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="mobile.errors.required">
+                        Celular es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="mobile.errors.minlength">
+                        Celular debe tener 10 números
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="mobile.errors.pattern && !mobile.errors.minlength">
+                        Celular debe tener solo números y debe empezar por 3
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Correo electrónico
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="email"
+                                 type="email"
+                                 maxlength="150"
+                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                 #email="ngModel"
+                                 [(ngModel)]="prospect.email"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="email.invalid && (email.dirty || email.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="email.errors.required">
+                        Correo electrónico es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="email.errors.pattern">
+                        Correo electrónico no válido
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </section>
+      </ion-slide>
+      <ion-slide>
+        <section class="ion-container pos-visit animated fadeIn faster">
+          <div class="app-card pos-visit">
+            <div class="app-card-title">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    Capacidad instalada
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="app-card-body">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <form (ngSubmit)="addCapacity(cForm)" #cForm="ngForm">
+                      <ion-grid class="ion-border-bottom">
+                        <ion-row>
+                          <ion-col size="6">
+                            <ion-item>
+                              <ion-label position="floating">Item
+                                <ion-text color="danger">*</ion-text>
+                              </ion-label>
+                              <ion-input name="item"
+                                         type="text" maxlength="10"
+                                         [(ngModel)]="capacity.item"
+                                         required>
+                              </ion-input>
+                            </ion-item>
+                          </ion-col>
+                          <ion-col size="6">
+                            <ion-item>
+                              <ion-label position="floating">Cantidad (k)
+                                <ion-text color="danger">*</ion-text>
+                              </ion-label>
+                              <ion-input name="quantity"
+                                         type="number"
+                                         class="ion-text-right"
+                                         inputmode="numeric"
+                                         [(ngModel)]="capacity.quantity"
+                                         required>
+                              </ion-input>
+                            </ion-item>
+                          </ion-col>
+                          <ion-col size="6">
+                            <ion-item>
+                              <ion-label position="floating">Precio
+                                <ion-text color="danger">*</ion-text>
+                              </ion-label>
+                              <ion-input name="price"
+                                         type="number"
+                                         class="ion-text-right"
+                                         inputmode="numeric"
+                                         [(ngModel)]="capacity.price"
+                                         required>
+                              </ion-input>
+                            </ion-item>
+                          </ion-col>
+                          <ion-col size="6" class="ion-align-self-end ion-text-right">
+                            <ion-button color="warning" size="small" (click)="cForm.reset()">
+                              <ion-icon name="refresh"></ion-icon>
+                            </ion-button>
+                            <ion-button type="submit" color="fucsia" size="small" [disabled]="cForm.invalid">
+                              <ion-icon name="add"></ion-icon>
+                            </ion-button>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </form>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="list-item" *ngFor="let c of prospect.installedCapacity; let i = index">
+                  <ion-col size="3" class="ion-align-self-center ion-text-center">
+                    <ion-text class="input-item">{{ c.item }}</ion-text>
+                  </ion-col>
+                  <ion-col size="3" class="ion-align-self-center ion-text-right">
+                    <ion-text class="input-item">{{ c.quantity | number }}</ion-text>
+                  </ion-col>
+                  <ion-col size="4" class="ion-align-self-center ion-text-right">
+                    <ion-text class="input-item">{{ c.price | currency }}</ion-text>
+                  </ion-col>
+                  <ion-col size="2" class="ion-align-self-center ion-text-center">
+                    <ion-button color="danger" size="small" class="btn-xs" (click)="removeCapacity(i)">
+                      <ion-icon name="trash"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </section>
+      </ion-slide>
+      <ion-slide>
+        <section class="ion-container pos-visit animated fadeIn faster">
+          <div class="app-card pos-visit">
+            <div class="app-card-title">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="12">
+                    Información actual
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div class="app-card-body">
+              <ion-grid>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Proveedor
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="supplier"
+                                 type="text"
+                                 minlength="5"
+                                 maxlength="60"
+                                 #supplier="ngModel"
+                                 [(ngModel)]="prospect.supplier"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="supplier.invalid && (supplier.dirty || supplier.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="supplier.errors.required">
+                        Proveedor actual es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="supplier.errors.minlength">
+                        Proveedor actual debe tener mínimo 5 caracteres
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="form-input">
+                    <ion-item>
+                      <ion-label position="floating">Volumen mensual (k)
+                        <ion-text color="danger">*</ion-text>
+                      </ion-label>
+                      <ion-input name="turnover"
+                                 type="number"
+                                 pattern="^[0-9]*$"
+                                 #turnover="ngModel"
+                                 [(ngModel)]="prospect.turnover"
+                                 class="ion-text-right"
+                                 required>
+                      </ion-input>
+                    </ion-item>
+                    <ng-container *ngIf="turnover.invalid && (turnover.dirty || turnover.touched)">
+                      <ion-text class="error-message animated fadeIn" *ngIf="turnover.errors.required">
+                        Volumen mensual es requerido
+                      </ion-text>
+                      <ion-text class="error-message animated fadeIn" *ngIf="turnover.errors.pattern">
+                        Volumen mensual debe tener solo números
+                      </ion-text>
+                    </ng-container>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">Observaciones</ion-label>
+                      <ion-textarea name="observations"
+                                    maxlength="150"
+                                    [(ngModel)]="prospect.observations">
+                      </ion-textarea>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </section>
+      </ion-slide>
+    </ion-slides>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button color="fucsia" form="prospectForm" [disabled]="pForm.form.invalid" (click)="pForm.ngSubmit.emit()">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="light" color="fucsia" [routerLink]="'/home'" routerDirection="forward">
+      <ion-icon name="undo"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

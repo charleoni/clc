@@ -1,0 +1,51 @@
+<ion-header class="ion-padding-horizontal">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="fucsia"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Puntos de venta</ion-title>
+        <ion-buttons slot="end">
+            <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list class="ion-border-bottom">
+        <ion-item lines="none">
+            <ion-icon slot="end" name="search"></ion-icon>
+            <ion-input class="ion-filter" [(ngModel)]="filterName"></ion-input>
+        </ion-item>
+    </ion-list>
+    <ng-container *ngFor="let p of pos">
+        <ion-grid class="ion-border ion-padding-horizontal" *ngIf="filterData(p)">
+            <ion-row>
+                <ion-col>
+                    <section class="ion-title">
+                        <ion-icon slot="start" color="fucsia" *ngIf="p.cartera > 0" name="filing"></ion-icon>
+                        {{ p.name }}
+                    </section>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <section class="ion-text ion-text small"><b>{{ p.establishment }}</b></section>
+                    <section class="ion-text ion-text small">
+                        <ion-icon slot="start" color="fucsia" name="pin"></ion-icon> {{ p.address }}
+                    </section>
+                    <section class="ion-text ion-text small">
+                        <ion-icon slot="start" color="fucsia" name="globe"></ion-icon> {{ p.city_name }}
+                    </section>
+                    <section class="ion-text ion-text small">
+                        <ion-icon slot="start" color="fucsia" name="call"></ion-icon> {{ p.phone }}
+                    </section>
+                    <section class="ion-text ion-text small">Lista Precios: {{ p.id_price_list }}</section>
+                    <section class="ion-text ion-text small">Lista Descuentos: {{ p.id_discount_list }}</section>
+                    <ion-button color="fucsia" class="ion-button-right" (click)="showModalPOS(p)">
+                        Ver detalle
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ng-container>
+</ion-content>

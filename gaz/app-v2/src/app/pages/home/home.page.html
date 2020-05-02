@@ -1,0 +1,111 @@
+<app-header title="Inicio"></app-header>
+<ion-content>
+  <section class="ion-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/sales-charts'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="stats" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Mis ventas</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/pos-list'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="filing" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Puntos de venta</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/accounts-receivable'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="briefcase" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Cartera</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/sale-prices'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="calculator" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Precios de venta</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/pos-visit-list'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="globe" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Ruta de visitas</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button color="light" expand="block" class="btn-menu-option" [routerLink]="'/prospects'" routerDirection="forward">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-icon name="people" color="fucsia" size="large"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="fucsia">Prospectos</ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>
+<ion-footer>
+  <ion-toolbar *ngIf="user" class="ion-padding-horizontal">
+    <ion-text color="fucsia" class="ion-text-x-small ion-float-start">Usuario: {{ user.name }}</ion-text>
+    <ion-text color="fucsia" class="ion-text-x-small ion-float-end">{{ date | date: 'yyyy-MM-dd' }}</ion-text>
+  </ion-toolbar>
+</ion-footer>

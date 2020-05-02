@@ -1,0 +1,277 @@
+@font-face {
+  font-family: CoconLight;
+  src: url(assets/fonts/CoconLight.ttf);
+}
+
+@font-face {
+  font-family: Museo500;
+  src: url(assets/fonts/Museo500.otf);
+}
+
+.ion-color-fucsia {
+  --ion-color-base: var(--ion-color-fucsia) !important;
+  --ion-color-base-rgb: var(--ion-color-fucsia-rgb) !important;
+  --ion-color-contrast: var(--ion-color-fucsia-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-fucsia-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-fucsia-shade) !important;
+  --ion-color-tint: var(--ion-color-fucsia-tint) !important;
+}
+
+.ion-color-green {
+  --ion-color-base: var(--ion-color-green) !important;
+  --ion-color-base-rgb: var(--ion-color-green-rgb) !important;
+  --ion-color-contrast: var(--ion-color-green-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-green-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-green-shade) !important;
+  --ion-color-tint: var(--ion-color-green-tint) !important;
+}
+
+.ion-text-small {
+  font-size: 0.7rem !important;
+}
+
+.ion-text-x-small {
+  font-size: 0.5rem !important;
+}
+
+.ion-fucsia {
+  color: #C50084 !important;
+}
+
+.ion-bg-fucsia {
+  background-color: #C50084 !important;
+}
+
+.ion-green {
+  color: #CCDC00 !important;
+}
+
+.ion-black {
+  color: #5A5A5A;
+}
+
+.ion-gray {
+  color: #828282;
+}
+
+.ion-white {
+  color: #F1F1F1 !important;
+}
+
+.font-museo {
+  font-family: Museo500;
+}
+
+.font-cocon {
+  font-family: CoconLight;
+}
+
+ion-label {
+  font-family: Museo500 !important;
+  color: #C50084 !important;
+  font-size: 97% !important;
+}
+
+ion-title {
+  font-family: Museo500 !important;
+  color: #C50084 !important;
+  font-size: 90%;
+
+  &.form-title {
+    padding: 1.5rem 0 0.7rem;
+    font-size: 100%;
+  }
+}
+
+ion-button {
+  height: 3rem !important;
+  font-family: Museo500 !important;
+  text-transform: none !important;
+
+  &.btn-menu-option {
+    height: 6.5rem !important;
+    font-family: Museo500 !important;
+    font-size: 75% !important;
+    font-weight: 100;
+    text-transform: none !important;
+    --border-radius: 1.5rem;
+    border: 0 solid transparent;
+    outline: none;
+    // --border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+    // --border-radius: 50% 50% 55% 45% / 60% 35% 65% 40%;
+  }
+
+  &.btn-xs {
+    font-size: 0.7rem;
+    height: 30px !important;
+  }
+}
+
+.item-has-focus.label-floating.sc-ion-label-md-h,
+.item-has-focus .label-floating.sc-ion-label-md-h,
+.item-has-placeholder.label-floating.sc-ion-label-md-h,
+.item-has-placeholder .label-floating.sc-ion-label-md-h,
+.item-has-value.label-floating.sc-ion-label-md-h,
+.item-has-value .label-floating.sc-ion-label-md-h {
+  transform: translate3d(0, 50%, 0) scale(.7);
+}
+
+.toast-container {
+  .success {
+    background: #C50084 !important;
+  }
+
+  .error {
+    background: #f9065c !important;
+  }
+}
+
+.toast-md .toast-message {
+  color: #f9f9f9;
+}
+
+ion-tab-button {
+  &.light {
+    ion-icon {
+      color: #ffffff !important;
+    }
+
+    ion-label {
+      color: #ffffff !important;
+      font-size: 60% !important;
+    }
+  }
+}
+
+ion-select,
+ion-input,
+ion-textarea {
+  font-family: Museo500 !important;
+  color: #C50084 !important;
+}
+
+ion-slide {
+  padding-bottom: 5rem;
+}
+
+
+.list-item {
+  border-bottom: 1px solid #f1f2f3;
+
+  ion-input {
+    &.input-item {
+      --padding-top: 0;
+      --padding-bottom: 2px;
+      margin-bottom: -2px;
+      border-bottom: 1px solid #dedede60;
+
+      &.ion-invalid.ion-touched {
+        border-bottom: 1px solid #f9065c;
+      }
+    }
+  }
+}
+
+ion-text {
+  font-family: Museo500 !important;
+  color: #C50084 !important;
+
+  &.input-item {
+    font-size: 75%;
+  }
+}
+
+form {
+  ion-col {
+    &.form-input {
+      text-align: left;
+
+      ion-text {
+        &.error-message {
+          font-size: 40%;
+          display: block;
+          padding: 0.2rem 0.6rem;
+        }
+      }
+    }
+  }
+}
+
+.ion-container {
+  padding: 3.5rem 2rem;
+  width: 100%;
+
+  &.pos-visit {
+    padding: 2.75rem 0rem;
+  }
+}
+
+.app-card {
+  font-family: Museo500 !important;
+  background-color: #ffffff;
+  color: #C50084;
+  font-size: 90%;
+  border-radius: 0.7rem;
+  box-shadow: 0 1px 7px #82828250;
+  width: 100%;
+  min-height: 12rem;
+  margin-bottom: 1.5rem;
+
+  &.pos-visit {
+    border-radius: 0;
+    box-shadow: none;
+    min-height: 28rem;
+
+    .app-card-title {
+      background-color: #dedede20;
+    }
+  }
+
+  .app-card-title {
+    padding: 0.4rem;
+
+    .app-card-title-button {
+      background-color: #fafbfc60;
+      margin: 0 auto;
+      outline: none;
+      border-radius: 0.5rem;
+
+      &:hover {
+        background-color: #fafbfc;
+      }
+    }
+  }
+
+  .app-card-subtitle {
+    background-color: #dedede45;
+    font-weight: lighter;
+    font-size: 80%;
+    padding: 0.5rem 1rem;
+    border-bottom: 0.05rem solid #dedede35;
+  }
+
+  .app-card-body {
+    padding: 0.3rem 0.5rem;
+
+    &.buttons {
+      padding: 0.35rem 0.5rem 1rem;
+    }
+
+    .app-card-item {
+      font-size: 70% !important;
+    }
+  }
+}
+
+ion-fab {
+  &.margin-top {
+    margin-top: 30px;
+  }
+}
+
+ion-img {
+  &.round {
+    border-radius: 0.7rem !important;
+    padding: 0.125rem;
+  }
+}

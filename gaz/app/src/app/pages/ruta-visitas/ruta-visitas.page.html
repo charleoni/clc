@@ -1,0 +1,52 @@
+<ion-header class="ion-padding-horizontal">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="fucsia"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ruta de visitas</ion-title>
+    <ion-buttons slot="end">
+      <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngFor="let l of list">
+    <ion-grid class="ion-border ion-padding-horizontal">
+      <ion-row>
+        <ion-col>
+          <section class="ion-title">
+            {{ l.name }}
+          </section>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <section class="ion-text ion-text small">
+            Fecha de visita: <b>{{ l.date }}</b>
+          </section>
+          <section class="ion-text ion-text small">
+            Código: <b>{{ l.code }}</b> Sucursal: <b>{{ l.branchOffice }}</b>
+          </section>
+          <section class="ion-text ion-text small">
+            <ion-icon slot="start" color="fucsia" name="pin"></ion-icon> {{ l.address }}
+          </section>
+          <section class="ion-text ion-text small">
+            <ion-icon slot="start" color="fucsia" name="globe"></ion-icon> {{ l.city }}
+          </section>
+          <section class="ion-text ion-text small">
+            <ion-icon slot="start" color="fucsia" name="call"></ion-icon> {{ l.phone }}
+          </section>
+          <ion-button color="fucsia"
+                      class="ion-float-end"
+                      size="small"
+                      [routerLink]="['/visita', l.id, l.code, l.branchOffice]"
+                      routerDirection="forward"
+                      [disabled]="isDisabled(l)">
+            Registrar visita
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+</ion-content>

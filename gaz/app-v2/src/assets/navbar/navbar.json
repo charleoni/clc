@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "home",
+    "name": "Inicio",
+    "type": "route",
+    "path": "/home"
+  },
+  {
+    "icon": "create",
+    "name": "Actualizar datos",
+    "type": "route",
+    "path": "/update-user"
+  },
+  {
+    "icon": "key",
+    "name": "Cambiar contraseña",
+    "type": "route",
+    "path": "/change-password"
+  },
+  {
+    "icon": "settings",
+    "name": "Configuraciones",
+    "type": "route",
+    "path": "/configurations"
+  },
+  {
+    "icon": "paper",
+    "name": "Términos y condiciones",
+    "type": "route",
+    "path": "/terms"
+  }
+]

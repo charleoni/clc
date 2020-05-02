@@ -1,0 +1,29 @@
+ion-header {
+  padding: 0 1.2rem;
+
+  ion-title {
+    padding: 0;
+  }
+}
+
+.ion-background-header {
+  background-color: #fff;
+  width: 680px;
+  height: 200px;
+  position: fixed;
+  top: -120px;
+  left: -160px;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px #C5008470, 0 1px 3px #C5008480;
+}
+
+.header-md:after {
+  background-image: none;
+  background-repeat: no-repeat;
+}
+
+.img-header {
+  width: 3.5rem;
+  height: auto;
+}
+

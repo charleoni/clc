@@ -1,0 +1,45 @@
+.img-login{
+  width: 65%;
+  height: auto;
+  margin: 0 auto 5%;
+  padding: 0.3rem;
+}
+.img-login-small{
+  width: 15%;
+  height: auto;
+  margin: 4rem auto 0.25rem;
+}
+
+ion-label{
+  &.small-label,
+  &.img-title {
+    font-family: 'CoconLight' !important;
+  }
+  font-family: 'Museo500' !important;
+}
+
+.small-label {
+  font-size: 0.7rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+}
+
+.login-label {
+  color: #C50084 !important;
+}
+
+.ion-custom-padding{
+  padding: 1rem 3rem;
+}
+
+.btn-login-container{
+  margin-top: 6rem;
+  .btn-login{
+    height: 3rem;
+    ion-label{
+      font-family: 'CoconLight' !important;
+      text-transform: none;
+      font-size: 1rem;
+    }
+  }
+}

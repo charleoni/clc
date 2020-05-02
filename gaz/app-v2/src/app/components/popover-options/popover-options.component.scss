@@ -1,0 +1,17 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-bottom: 1px solid #dedede70;
+    color: #C50084;
+    font-family: Museo500 !important;
+    font-weight: lighter;
+    font-size: 90%;
+    padding: 0.7rem 1rem;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}

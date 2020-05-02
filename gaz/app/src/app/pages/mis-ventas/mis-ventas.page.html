@@ -1,0 +1,206 @@
+<ion-header class="ion-padding-horizontal">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="fucsia"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis ventas</ion-title>
+    <ion-buttons slot="end">
+      <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides #sliderMain>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-title>Ventas en kilos por año</ion-title>
+            </ion-item>
+            <ion-item>
+              <ion-label>Periodo: </ion-label>
+              <ion-select [(ngModel)]="year" interface="popover" placeholder="Seleccionar" (ngModelChange)="loadSalesKgZones()">
+                <ion-select-option *ngFor="let y of yearList" value="{{y}}">{{y}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="salesKgZonesData.length > 0">
+          <ion-col>
+            <ion-card class="ion-padding">
+              <canvas baseChart width="100%" height="100%"
+                      [data]="salesKgZonesData"
+                      [labels]="salesKgZonesLabels"
+                      [chartType]="salesKgZonesType"
+                      [options]="salesKgZonesOptions"
+                      [plugins]="salesKgZonesPlugins"
+                      [colors]="salesKgZonesColors"
+                      [legend]="salesKgZonesLegend">
+              </canvas>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="salesKgZonesData.length > 0">
+          <ion-col>
+            <div>
+              <table>
+                <tr>
+                  <th *ngFor="let label of salesKgZonesLabels" width="20%">{{label}}</th>
+                </tr>
+                <tr>
+                  <td *ngFor="let data of salesKgZonesData">{{ data | number }}</td>
+                </tr>
+                <tr>
+                  <td *ngFor="let color of salesKgZonesColors[0].backgroundColor" [ngStyle]="{'background-color': color}"></td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-title>Precio promedio kg por año</ion-title>
+            </ion-item>
+            <ion-item>
+              <ion-label>Periodo: </ion-label>
+              <ion-select [(ngModel)]="year" interface="popover" placeholder="Seleccionar" (ngModelChange)="loadPricesKgZones()">
+                <ion-select-option *ngFor="let y of yearList" value="{{y}}">{{y}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="lineChartData.length > 1">
+          <ion-col>
+            <ion-card class="ion-padding">
+              <canvas baseChart width="100%" height="100%"
+                      [datasets]="lineChartData"
+                      [labels]="lineChartLabels"
+                      [options]="lineChartOptions"
+                      [legend]="lineChartLegend"
+                      [chartType]="lineChartType"
+                      [plugins]="lineChartPlugins">
+              </canvas>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="lineChartData.length > 1">
+          <ion-col>
+            <div class="">
+              <table class="small">
+                <tr>
+                  <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                </tr>
+                <tr *ngFor="let d of lineChartData; let i=index">
+                  <td *ngFor="let label of lineChartLabels; let j=index">
+                    {{d && d.data[j]}}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-title>Ventas en kg por año</ion-title>
+            </ion-item>
+            <ion-item>
+              <ion-label>Periodo: </ion-label>
+              <ion-select [(ngModel)]="year" interface="popover" placeholder="Seleccionar" (ngModelChange)="loadTotalKgZones()">
+                <ion-select-option *ngFor="let y of yearList" value="{{y}}">{{y}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="totalKgChartData.length > 1">
+          <ion-col>
+            <ion-card class="ion-padding">
+              <canvas baseChart width="100%" height="100%"
+                      [datasets]="totalKgChartData"
+                      [labels]="totalKgChartLabels"
+                      [options]="totalKgChartOptions"
+                      [legend]="totalKgChartLegend"
+                      [chartType]="totalKgChart.type"
+                      [plugins]="totalKgChartPlugins">
+              </canvas>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="totalKgChartData.length > 1">
+          <ion-col>
+            <div class="">
+              <table class="small">
+                <tr>
+                  <th *ngFor="let label of totalKgChartLabels">{{label}}</th>
+                </tr>
+                <tr *ngFor="let d of totalKgChartData; let i=index">
+                  <td *ngFor="let label of totalKgChartLabels; let j=index">
+                    {{d && d.data[j]}}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item lines="none" class="ion-text-center">
+              <ion-title>Kilos por referencia</ion-title>
+            </ion-item>
+            <ion-item>
+              <ion-label>Periodo: </ion-label>
+              <ion-select [(ngModel)]="year" interface="popover" placeholder="Seleccionar" (ngModelChange)="loadReferencesKg()">
+                <ion-select-option *ngFor="let y of yearList" value="{{y}}">{{y}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="barChartData[0].data.length > 1">
+          <ion-col>
+            <ion-card class="ion-padding">
+              <canvas baseChart width="100%" height="100%"
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [plugins]="barChartPlugins"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType">
+              </canvas>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="barChartData[0].data.length > 1">
+          <ion-col>
+            <div class="">
+              <table class="small">
+                <tr>
+                  <th *ngFor="let label of barChartLabels">{{label}}</th>
+                </tr>
+                <tr *ngFor="let d of barChartData; let i=index">
+                  <td *ngFor="let label of barChartLabels; let j=index">
+                    {{d && d.data[j]}}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,86 @@
+<div class="app-card animated fadeIn slower" *ngIf="pos">
+  <div class="app-card-title">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="11">
+          {{ pos.name }}
+        </ion-col>
+        <ion-col size="1" *ngIf="type === 'pos'">
+          <button class="app-card-title-button" (click)="displayPopover($event)">
+            <ion-icon color="fucsia" name="more" slot="icon-only"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col size="1" *ngIf="type === 'visit'">
+          <button class="app-card-title-button" (click)="displayPopover($event)">
+            <ion-icon color="fucsia" name="more" slot="icon-only"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="app-card-subtitle">
+    {{ pos.tradename || '-' }} <ion-icon *ngIf="pos.billing === 'S'" name="pricetags" color="fucsia" slot="icon-only"></ion-icon>
+  </div>
+  <div class="app-card-body">
+    <div class="app-card-item">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="grid"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          {{ pos.code + ' :: ' + pos.branch_code }}
+        </ion-col>
+      </ion-grid>
+    </div>
+    <div class="app-card-item" *ngIf="type === 'visit'">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="calendar"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <b>{{ pos.date }}</b>
+        </ion-col>
+      </ion-grid>
+    </div>
+    <div class="app-card-item">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="pin"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          {{ pos.address }}
+        </ion-col>
+      </ion-grid>
+    </div>
+    <div class="app-card-item">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="globe"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          {{ pos.city_name + ' (' + pos.department_name + ')' }}
+        </ion-col>
+      </ion-grid>
+    </div>
+    <div class="app-card-item">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="at"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          {{ pos.email | lowercase }}
+        </ion-col>
+      </ion-grid>
+    </div>
+    <div class="app-card-item">
+      <ion-grid>
+        <ion-col size="1">
+          <ion-icon name="call"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          {{ pos.phone }}
+        </ion-col>
+      </ion-grid>
+    </div>
+  </div>
+</div>

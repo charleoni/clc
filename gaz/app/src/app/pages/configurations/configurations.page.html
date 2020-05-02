@@ -1,0 +1,44 @@
+<ion-header class="ion-padding-horizontal">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="fucsia"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Configuraciones</ion-title>
+        <ion-buttons slot="end">
+            <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding form-configuration">
+    <ion-button color="fucsia" expand="full" fill="outline" size="large" shape="round" (click)="getCartera()">
+        <ion-label>
+            Cartera
+        </ion-label>
+    </ion-button>
+    <ion-button color="fucsia" expand="full" fill="outline" size="large" shape="round" (click)="getCities()">
+        <ion-label>
+            Departamentos / Municipios
+        </ion-label>
+    </ion-button>
+    <ion-button color="fucsia" expand="full" fill="outline" size="large" shape="round" (click)="getListadescuentos()">
+        <ion-label>
+            Descuentos para puntos
+        </ion-label>
+    </ion-button>
+    <ion-button color="fucsia" expand="full" fill="outline" size="large" shape="round" (click)="getListaprecios()">
+        <ion-label>
+            Precio de venta para puntos
+        </ion-label>
+    </ion-button>
+    <ion-button color="fucsia" expand="full" fill="outline" size="large" shape="round" (click)="getPos()">
+        <ion-label>
+            Puntos de ventas Básico
+        </ion-label>
+    </ion-button>
+</ion-content>
+<ion-footer class="ion-padding-horizontal ion-text-center">
+    <ion-toolbar>
+        <ion-label class="x-small">Para actualizar debe presionar el botón correspondiente. </ion-label>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,148 @@
+
+.ion-img-login {
+  margin-bottom: 2%;
+  article {
+    max-width: 55%;
+    margin: 25% auto 2%;
+  }
+}
+
+.form-container {
+  padding: 1rem 1.7rem 0;
+}
+
+.btn-container {
+  padding: 2rem 1.5rem 0.5rem;
+}
+
+a{
+  &.remember-password {
+    color: #C50084;
+    font-family: Museo500 !important;
+    font-size: 60%;
+    text-decoration: none;
+    text-shadow: #C5008420 1px 2px 1px;
+  }
+}
+
+ion-button {
+  height: 3rem !important;
+  font-family: Museo500 !important;
+  font-size: 90% !important;
+  text-transform: none !important;
+  // --border-radius: 60% 40% 50% 50% / 60% 60% 40% 40%;
+}
+
+footer {
+  text-align: center;
+  ion-img {
+    width: 2rem;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+.footer-md:before {
+  background-image: none;
+  background-repeat: no-repeat;
+}
+
+/* Actual code example */
+
+$primary-color: #C50084;
+$animation-duration: 0.3s;
+
+@mixin label-inactive() {
+  font-size: 0.9rem;
+  transform: translateY(0);
+}
+
+@mixin label-active() {
+  font-size: 0.75rem;
+  transform: translateY(-12px);
+}
+
+.form-field {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.form-field__label {
+  @include label-active();
+  display: block;
+  font-weight: normal;
+  left: 0;
+  margin: 0;
+  padding: 15px 15px 0;
+  position: absolute;
+  top: 0;
+  transition: all $animation-duration;
+  width: 100%;
+  color: $primary-color;
+  font-family: Museo500;
+}
+
+.form-field__control {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.form-field__bar {
+  border-bottom: 2px solid $primary-color;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: all $animation-duration;
+  width: 1%;
+}
+
+.form-field__input,
+.form-field__textarea {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #e2e2e2;
+  color: #5A5A5A90;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 200;
+  margin-top: 20px;
+  outline: 0;
+  padding: 0 12px 7px;
+  width: 100%;
+
+  // IE 10-11
+  &:-ms-input-placeholder {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+
+  // All other browsers except Edge
+  &:placeholder-shown {
+    ~ .form-field__label {
+      @include label-inactive();
+    }
+  }
+
+  &:focus {
+    ~ .form-field__label {
+      color: $primary-color;
+      @include label-active();
+    }
+
+    ~ .form-field__bar {
+      border-bottom: 2px solid $primary-color;
+      transform: scaleX(150);
+    }
+  }
+}
+
+.form-field__textarea {
+  height: 150px;
+}

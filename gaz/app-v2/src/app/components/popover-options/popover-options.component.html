@@ -1,0 +1,22 @@
+<ul [ngSwitch]="type">
+  <li *ngSwitchCase="'pos'" (click)="onSelect('detail', type)">
+    <label>Datos Punto de Venta</label>
+  </li>
+  <ng-container *ngIf="billing === 'S'">
+    <li *ngSwitchCase="'pos'" (click)="onSelect('billing', type)">
+      <label>Cartera</label>
+    </li>
+  </ng-container>
+  <li *ngSwitchCase="'pos'" (click)="onSelect('price', type)">
+    <label>Lista de precios</label>
+  </li>
+  <li *ngSwitchCase="'pos'" (click)="onSelect('chart', type)">
+    <label>Gráficas de ventas</label>
+  </li>
+  <li *ngSwitchCase="'visit'" (click)="onSelect('create', type)">
+    <label>Diligenciar visita</label>
+  </li>
+  <li *ngSwitchCase="'visit'" (click)="onSelect('synchronize', type)">
+    <label>Sincronizar visita</label>
+  </li>
+</ul>

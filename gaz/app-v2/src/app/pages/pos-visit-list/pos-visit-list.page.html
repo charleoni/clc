@@ -1,0 +1,14 @@
+<app-header title="Ruta de visitas"></app-header>
+
+<ion-content>
+  <section class="ion-container">
+    <app-pos [pos]="p" [type]="'visit'" [billing]="p.billing" (onSelect)="onSelect($event)" *ngFor="let p of pos"></app-pos>
+  </section>
+</ion-content>
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="fucsia" [routerLink]="'/home'" routerDirection="forward">
+      <ion-icon name="undo"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-footer>

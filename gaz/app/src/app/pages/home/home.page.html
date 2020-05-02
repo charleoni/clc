@@ -1,0 +1,51 @@
+<ion-header class="ion-padding-horizontal">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu" color="fucsia"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Menú principal</ion-title>
+    <ion-buttons slot="end">
+      <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="12" size-md="6">
+        <ion-button color="fucsia" fill="outline" expand="block" class="btn-menu" [routerLink]="'/mis-ventas'" routerDirection="forward">
+          <ion-icon slot="start" name="pie" class="btn-menu-icon"></ion-icon>
+          <ion-label>Mis ventas</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="12" size-md="6" *ngIf="user.idProfile == 1 || user.idProfile == 4">
+        <ion-button color="fucsia" fill="outline" expand="block" class="btn-menu" [routerLink]="'/ruta-visitas'" routerDirection="forward">
+          <ion-icon slot="start" name="map" class="btn-menu-icon"></ion-icon>
+          <ion-label>Ruta de visitas</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-xs="12" size-sm="12" size-md="6">
+        <ion-button color="fucsia" fill="outline" expand="block" class="btn-menu" [routerLink]="'/puntos-venta'" routerDirection="forward">
+          <ion-icon slot="start" name="filing" class="btn-menu-icon"></ion-icon>
+          <ion-label>Puntos de venta</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col size-xs="12" size-sm="12" size-md="6" *ngIf="user.idProfile == 1 || user.idProfile == 4">
+        <ion-button color="fucsia" fill="outline" expand="block" class="btn-menu" [routerLink]="'/prospectos'" routerDirection="forward">
+          <ion-icon slot="start" name="medal" class="btn-menu-icon"></ion-icon>
+          <ion-label>Prospectos</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="ion-padding-horizontal">
+  <ion-toolbar>
+    <ion-title slot="start" class="small">Usuario: {{user.name}}</ion-title>
+    <ion-title slot="end" class="small">Fecha: {{ currentDate | date: 'yyyy-MM-dd' }}</ion-title>
+  </ion-toolbar>
+</ion-footer>

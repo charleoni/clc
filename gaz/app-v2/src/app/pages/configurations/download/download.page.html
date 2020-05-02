@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <section class="ion-container">
+    <ion-list lines="none">
+      <ion-item>
+          <ion-icon color="fucsia" [name]="isChecked('cities')" slot="start"></ion-icon>
+        <ion-label>Ciudades</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="fucsia" [name]="isChecked('pos')" slot="start"></ion-icon>
+        <ion-label>Puntos de venta</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="fucsia" [name]="isChecked('posInventories')" slot="start"></ion-icon>
+        <ion-label>Inventarios Puntos de venta</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon color="fucsia" [name]="isChecked('posVisit')" slot="start"></ion-icon>
+        <ion-label>Visitas Puntos de venta</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button color="light" shape="round" expand="full" (click)="download()">
+      <ion-text color="fucsia">Sincronizar datos de la App</ion-text>
+    </ion-button>
+    <section class="ion-text-center" *ngIf="lastUpdate">
+      <ion-text class="ion-text-x-small"> Última actualización: {{ lastUpdate | date: 'yyyy-MM-dd hh:mm:ss' }}</ion-text>
+    </section>
+  </section>
+</ion-content>

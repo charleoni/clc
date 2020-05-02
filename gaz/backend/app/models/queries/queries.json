@@ -1,0 +1,23 @@
+{
+    "cities": "SELECT id, name, type, city_id FROM `APP_CITIES` ORDER BY type, name",
+    "city_name": "SELECT CONCAT( c.name, ' (' , d.name, ')') AS name FROM APP_CITIES c INNER JOIN APP_CITIES d ON c.city_id = d.id WHERE c.id = :cityId;",
+    "app_pos_dc": "SELECT * FROM `APP_POS` ORDER BY name, code, branch_code",
+    "app_pos_sc": "SELECT * FROM `APP_POS` WHERE operation_center_id = :code ORDER BY name, code, branch_code",
+    "app_pos_su": "SELECT * FROM `APP_POS` WHERE supervisor_id = :code ORDER BY name, code, branch_code",
+    "pos_inventories": "SELECT * FROM `APP_POS_INVENTORIES` WHERE supervisor_id = :supervisorId ORDER BY code, branch_code, product",
+
+    "users": "SELECT * FROM `users`",
+    "profiles": "SELECT * FROM `profiles` WHERE active = :active",
+    "terceros": "SELECT * FROM `terceros` WHERE CLI_CO IN (:cli_co)",
+    "puntos_ventas_basico": "SELECT * FROM `punto_ventas_basico` WHERE id_supervisor = :idSupervisor ORDER BY name",
+    "lista_precios": "SELECT * FROM `lista_precios`",
+    "lista_descuentos": "SELECT * FROM `lista_descuentos`",
+    "cartera": "SELECT * FROM `cartera`",
+    "pos_inventory": "SELECT product, quantity, '' AS 'check' FROM `inventories` WHERE code = :code AND branch_office = :branch_office ORDER BY product",
+    "supervisor_visits": "SELECT v.id,v.date,p.name,p.code,p.branch_office AS branchOffice,p.address,CONCAT_WS(' - ', city_name, department_name) AS city,p.phone,v.authorization,v.location FROM visit_reports v INNER JOIN punto_ventas_basico p ON v.code = p.code AND v.branch_office = p.branch_office WHERE v.id_supervisor = :idSupervisor AND v.is_finished = 0 ORDER BY date ASC, p.name",
+    "ventas_zonas_kg": "SELECT NAME_ZONE, KILOS FROM gaz.APP_V_VENTAS_ZONAS WHERE YEAR = :year ORDER BY NAME_ZONE",
+    "precios_zonas_kg": "SELECT MONTH, NAME_ZONE, (PESOS/KILOS) AS PRICE FROM gaz.APP_V_PRECIOS_ZONAS WHERE YEAR = :year ORDER BY MONTH, NAME_ZONE;",
+    "total_zonas_kg": "SELECT MONTH, NAME_ZONE, KILOS AS PRICE FROM gaz.APP_V_PRECIOS_ZONAS WHERE YEAR = :year ORDER BY MONTH, NAME_ZONE;",
+    "referencias_kg": "SELECT ID_REFERENCIA AS REFERENCIA, KILOS FROM APP_V_KILOS_REFERENCIA WHERE YEAR = :year ORDER BY KILOS DESC",
+    "pos_average": "SELECT MONTH, PESOS, KILOS, PRICE FROM APP_V_POS_AVERAGE WHERE YEAR = :year AND CODIGO = :code ORDER BY MONTH"
+}

@@ -1,0 +1,13 @@
+[{
+        "icon": "key",
+        "name": "Cambiar contraseña",
+        "type": "route",
+        "path": "/change-password"
+    },
+    {
+        "icon": "settings",
+        "name": "Configuraciones",
+        "type": "route",
+        "path": "/configurations"
+    }
+]

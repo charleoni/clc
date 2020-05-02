@@ -1,0 +1,19 @@
+<ion-menu side="start" menuId="principal" contentId="main">
+  <ion-header>
+    <ion-toolbar color="fucsia">
+      <ion-title class="menus">Menú principal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-menu-toggle *ngFor="let option of options | async ">
+      <ion-item lines="full" class="activated" [routerLink]="option.path">
+        <ion-icon slot="start" [name]="option.icon" color="fucsia"></ion-icon>
+        <ion-label> {{ option.name }} </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
+    <ion-item lines="full" class="activated" (click)="closeSession()">
+      <ion-icon slot="start" name="power" color="fucsia"></ion-icon>
+      <ion-label> Cerrar sesión </ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>

@@ -1,0 +1,15 @@
+<ion-header>
+  <section class="ion-background-header" [ngClass]="{'ion-bg-fucsia': hasBackground == 'true'}"></section>
+  <ion-toolbar [hidden]="display == 'false'">
+    <ion-buttons slot="start">
+      <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu" color="fucsia"></ion-icon>
+      </ion-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title color="fucsia">{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-img class="img-header" [src]="'assets/img/logo-gaz.png'"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

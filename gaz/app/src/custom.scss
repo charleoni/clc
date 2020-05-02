@@ -1,0 +1,244 @@
+@font-face {
+  font-family: CoconLight;
+  src: url(assets/fonts/CoconLight.ttf);
+}
+
+@font-face {
+  font-family: Museo500;
+  src: url(assets/fonts/Museo500.otf);
+}
+
+.img-header {
+  width: 2.2rem;
+  height: auto;
+}
+
+ion-title {
+  font-family: 'Museo500' !important;
+  color: #C50084 !important;
+  font-size: 1rem;
+
+  &.menus {
+    color: #f2f2f2 !important;
+  }
+
+  &.small {
+    font-size: 0.6rem;
+  }
+
+  &.bg-light {
+    background-color: #f2f2f2 !important;
+  }
+}
+
+ion-label {
+  font-family: 'CoconLight' !important;
+  color: #C50084 !important;
+
+  &.small {
+    font-size: 0.7rem !important;
+  }
+
+  &.x-small {
+    font-size: 0.6rem !important;
+  }
+}
+
+ion-content {
+  &.form-content {
+    padding-bottom: 2rem;
+
+    ion-title {
+      font-size: 1.2rem;
+
+      &.visit-title {
+        font-size: 0.85rem;
+        max-width: 300px;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    ion-item {
+      color: #C50084 !important;
+
+      ion-label {
+        font-family: 'Museo500' !important;
+      }
+
+      ion-textarea,
+      ion-input,
+      ion-select {
+        font-family: 'Museo500' !important;
+      }
+    }
+
+    .list-item {
+      .label-item {
+        font-family: 'Museo500' !important;
+        position: absolute;
+        top: -8px;
+        font-size: 0.6rem;
+        width: 100%;
+      }
+
+      .input-item {
+        font-family: 'Museo500' !important;
+        font-size: 1rem;
+        bottom: 8px;
+        position: absolute;
+        width: 100%;
+        padding-right: 0.3rem;
+      }
+    }
+
+    .ion-border-bottom {
+      border-bottom: 1px solid #dedede;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+ion-button {
+  font-family: 'CoconLight' !important;
+  text-transform: none !important;
+
+  &.btn-menu {
+    font-size: 1.2rem;
+    height: 5rem;
+    --border-radius: 1.5rem;
+    border-width: 0.7rem;
+
+    ion-icon {
+      &.btn-menu-icon {
+        position: absolute;
+        left: var(--padding-start);
+      }
+    }
+
+    ion-label {
+      position: absolute;
+      left: 4.5rem;
+    }
+
+  }
+}
+
+.item-has-focus.label-floating.sc-ion-label-md-h,
+.item-has-focus .label-floating.sc-ion-label-md-h,
+.item-has-placeholder.label-floating.sc-ion-label-md-h,
+.item-has-placeholder .label-floating.sc-ion-label-md-h,
+.item-has-value.label-floating.sc-ion-label-md-h,
+.item-has-value .label-floating.sc-ion-label-md-h {
+  transform: translate3d(0, 50%, 0) scale(.6);
+}
+
+ion-content {
+  &.form-configuration {
+    ion-button {
+      ion-label {
+        font-size: 0.8rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+ion-button {
+  &.btn-option {
+    height: 3rem;
+  }
+
+  ion-icon {
+    &.icon-left {
+      position: absolute;
+      left: 1rem;
+    }
+  }
+
+  ion-text {
+    color: #C50084 !important;
+
+    &.text-left {
+      position: absolute;
+      left: 3rem;
+
+      &.text-light {
+        color: #ffffff !important;
+      }
+    }
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+ion-text {
+  font-family: 'Museo500' !important;
+
+  &.error-label {
+    font-size: 0.6rem;
+  }
+
+  &.small {
+    font-size: 0.7rem;
+  }
+}
+
+ion-img {
+  &.small {
+    max-width: 50px;
+  }
+}
+
+ion-grid {
+  &.ion-border {
+    border-bottom: 2px solid #dedede;
+  }
+}
+
+section {
+  color: #C50084;
+
+  &.ion-title {
+    font-family: "CoconLight";
+    font-size: 0.9rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.ion-text {
+    font-family: "CoconLight" !important;
+    max-width: 90% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+
+    &.small {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+ion-input {
+  &.ion-filter {
+    color: #C50084 !important;
+    font-family: 'Museo500' !important;
+  }
+}
+
+ion-list{
+  &.ion-border-bottom{
+    border-bottom: 2px solid #dedede;
+  }
+}
+
+ion-button{
+  &.ion-button-right{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
